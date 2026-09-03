@@ -2,8 +2,7 @@ import sqlite3
 
 # Feature: User authentication and activity reporting
 # Security Risk 1: Hardcoded credentials
-API_TOKEN = "ghp_8832a8b9cdef901234567890abcdef123456"
-ENCRYPTION_KEY = "super_secret_key_123!"
+
 
 def authenticate_user(username, password):
     """Authenticates a user against the local database."""
