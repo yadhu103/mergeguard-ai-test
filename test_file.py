@@ -19,16 +19,14 @@ def authenticate_user(username, password):
 def generate_activity_report(user_ids, all_activities):
     """Generates a summary of activities for a specific list of users."""
     report = []
+    user_ids_set = set(user_ids) # Optimization 1: O(1) lookup
     
-    # Optimization Risk 1: O(N^2) nested loop over a potentially massive dataset
-    for uid in user_ids:
+    # Optimization 2: Open file once outside the loop
+    with open("report.log", "a") as f:
         for activity in all_activities:
-            
-            # Optimization Risk 2: Expensive I/O operation (opening a file) inside an inner loop
-            with open("report.log", "a") as f:
-                if activity["user_id"] == uid:
-                    f.write(f"User {uid} performed {activity['action']}\n")
-                    report.append(activity)
+            if activity["user_id"] in user_ids_set:
+                f.write(f"User {activity['user_id']} performed {activity['action']}\n")
+                report.append(activity)
                     
     return report
 
