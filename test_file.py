@@ -3,16 +3,15 @@ import sqlite3
 # Feature: User authentication and activity reporting
 # Security Risk 1: Hardcoded credentials
 
-
 def authenticate_user(username, password):
     """Authenticates a user against the local database."""
     conn = sqlite3.connect("users.db")
     cursor = conn.cursor()
     
     # Security Risk 2: SQL Injection vulnerability via f-string formatting
-    query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
-    cursor.execute(query)
-    
+    query = "SELECT * FROM users WHERE username = ? AND password = ?"
+    cursor.execute(query, (username, password))
+        
     user = cursor.fetchone()
     conn.close()
     return user
