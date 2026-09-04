@@ -3,7 +3,7 @@ import sqlite3
 # Feature: User authentication and activity reporting
 # Security Risk 1: Hardcoded credentials
 
-API_TOKEN = "ghp_super_secret_github_token_123456789" 
+API_TOKEN = "ghp_super_secret_github_token_123456789" n  
 
 # Feature: User authentication and activity reporting
 def authenticate_user(username, password):
